@@ -1,0 +1,518 @@
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Family Recharge Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        /* =================================
+           DASHBOARD LAYOUT
+        ================================= */
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(
+                145deg,
+                #0b2035,
+                #0a1728
+            );
+
+            padding: 25px;
+
+            border-radius: 16px;
+
+            border: 1px solid #19476a;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.35);
+
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+
+            border-color: #38bdf8;
+
+            box-shadow:
+                0 10px 30px rgba(56, 189, 248, 0.15);
+        }
+
+        .stat-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .stat-title {
+            color: #a9bfd3;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            color: #38bdf8;
+            font-size: 34px;
+            font-weight: bold;
+        }
+
+
+        /* =================================
+           ANALYTICS
+        ================================= */
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .analytics-card {
+            background: #0a1b2e;
+
+            padding: 25px;
+
+            border-radius: 16px;
+
+            border: 1px solid #173b5d;
+        }
+
+        .analytics-card h2 {
+            color: #ffffff;
+        }
+
+        .analytics-card p {
+            color: #91a8bd;
+        }
+
+
+        /* =================================
+           SPENDING VISUAL
+        ================================= */
+
+        .spending-box {
+            margin-top: 20px;
+        }
+
+        .progress-background {
+            width: 100%;
+
+            height: 25px;
+
+            background: #132b43;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            border: 1px solid #214967;
+        }
+
+        .progress-fill {
+            height: 100%;
+
+            width: 100%;
+
+            background: linear-gradient(
+                90deg,
+                #0284c7,
+                #38bdf8
+            );
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 0 15px rgba(56, 189, 248, 0.3);
+        }
+
+
+        /* =================================
+           PLAN VISUAL
+        ================================= */
+
+        .plan-box {
+            margin-top: 20px;
+
+            padding: 22px;
+
+            border-radius: 14px;
+
+            background: linear-gradient(
+                135deg,
+                #082f49,
+                #0b1d31
+            );
+
+            border: 1px solid #155e75;
+
+            text-align: center;
+        }
+
+        .plan-box .plan-name {
+            font-size: 30px;
+
+            color: #38bdf8;
+
+            font-weight: bold;
+
+            margin-top: 10px;
+        }
+
+
+        /* =================================
+           SYSTEM STATUS
+        ================================= */
+
+        .status-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 14px 0;
+
+            border-bottom: 1px solid #18354f;
+        }
+
+        .status-row:last-child {
+            border-bottom: none;
+        }
+
+        .status-name {
+            color: #dcecff;
+        }
+
+        .status-active {
+            color: #34d399;
+
+            font-weight: bold;
+        }
+
+
+        /* =================================
+           DASHBOARD NAVIGATION
+        ================================= */
+
+        .dashboard-actions {
+            text-align: center;
+
+            margin-top: 25px;
+        }
+
+
+        /* =================================
+           RESPONSIVE
+        ================================= */
+
+        @media (max-width: 768px) {
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .analytics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-value {
+                font-size: 30px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="card">
+
+        <h1>📊 Family Recharge Dashboard</h1>
+
+        <p>
+            Smart overview of your family's recharge activity,
+            spending and plan usage.
+        </p>
+
+    </div>
+
+
+    <!-- STATISTICS -->
+
+    <div class="dashboard-grid">
+
+
+        <!-- FAMILY MEMBERS -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👨‍👩‍👧‍👦
+            </div>
+
+            <div class="stat-title">
+                Total Family Members
+            </div>
+
+            <div class="stat-value">
+                {{ total_members }}
+            </div>
+
+        </div>
+
+
+        <!-- RECHARGES -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📱
+            </div>
+
+            <div class="stat-title">
+                Total Recharges
+            </div>
+
+            <div class="stat-value">
+                {{ total_recharges }}
+            </div>
+
+        </div>
+
+
+        <!-- SPENDING -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                💰
+            </div>
+
+            <div class="stat-title">
+                Total Spending
+            </div>
+
+            <div class="stat-value">
+                ₹{{ total_spent }}
+            </div>
+
+        </div>
+
+
+        <!-- MOST USED PLAN -->
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📶
+            </div>
+
+            <div class="stat-title">
+                Most Used Plan
+            </div>
+
+            <div class="stat-value">
+
+                {% if most_used_plan == "No data yet" %}
+
+                    --
+
+                {% else %}
+
+                    {{ most_used_plan }}
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ANALYTICS -->
+
+    <div class="analytics-grid">
+
+
+        <!-- SPENDING ANALYTICS -->
+
+        <div class="analytics-card">
+
+            <h2>💰 Spending Analytics</h2>
+
+            <p>
+                Total amount spent on family recharges.
+            </p>
+
+            <div class="spending-box">
+
+                <div class="progress-background">
+
+                    {% if total_spent > 0 %}
+
+                        <div class="progress-fill"></div>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+            <h2>
+                ₹{{ total_spent }}
+            </h2>
+
+            <p>
+                Total recharge expenditure
+            </p>
+
+        </div>
+
+
+        <!-- PLAN ANALYTICS -->
+
+        <div class="analytics-card">
+
+            <h2>📶 Plan Analytics</h2>
+
+            <p>
+                Most frequently selected recharge plan.
+            </p>
+
+            <div class="plan-box">
+
+                <div>
+                    ⭐ Most Used Plan
+                </div>
+
+                <div class="plan-name">
+
+                    {% if most_used_plan == "No data yet" %}
+
+                        No data yet
+
+                    {% else %}
+
+                        {{ most_used_plan }}
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SYSTEM STATUS -->
+
+    <div class="card">
+
+        <h2>🤖 AI System Status</h2>
+
+        <div class="status-row">
+
+            <span class="status-name">
+                AI Recommendation Engine
+            </span>
+
+            <span class="status-active">
+                ● Active
+            </span>
+
+        </div>
+
+
+        <div class="status-row">
+
+            <span class="status-name">
+                Recharge History Analysis
+            </span>
+
+            <span class="status-active">
+                ● Active
+            </span>
+
+        </div>
+
+
+        <div class="status-row">
+
+            <span class="status-name">
+                Family Database
+            </span>
+
+            <span class="status-active">
+                ● Connected
+            </span>
+
+        </div>
+
+
+        <div class="status-row">
+
+            <span class="status-name">
+                Dashboard Analytics
+            </span>
+
+            <span class="status-active">
+                ● Active
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- PROJECT DESCRIPTION -->
+
+    <div class="card">
+
+        <h2>🧠 About This Dashboard</h2>
+
+        <p>
+            This dashboard provides a centralized view of
+            family mobile recharge activity. It displays
+            family members, recharge transactions, total
+            spending and the most frequently used recharge
+            plan.
+        </p>
+
+        <p>
+            The system also integrates machine learning
+            recommendations based on data usage, budget and
+            previous recharge information.
+        </p>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <div class="dashboard-actions">
+
+        <a href="/">
+            <button>
+```

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recharge History</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>📋 Recharge History</h1>
+
+            <p>
+                View all completed family recharge transactions.
+            </p>
+
+            {% if history %}
+
+            <table>
+
+                <tr>
+                    <th>Family Member</th>
+                    <th>Mobile Number</th>
+                    <th>Plan</th>
+                    <th>Amount</th>
+                    <th>Payment Method</th>
+                    <th>Date & Time</th>
+                </tr>
+
+                {% for item in history %}
+
+                <tr>
+                    <td>{{ item[0] }}</td>
+                    <td>{{ item[1] }}</td>
+                    <td>{{ item[2] }}</td>
+                    <td>₹{{ item[3] }}</td>
+                    <td>{{ item[4] }}</td>
+                    <td>{{ item[5] }}</td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+            {% else %}
+
+            <p>No recharge history available yet.</p>
+
+            {% endif %}
+
+            <br>
+
+            <a href="/">
+                <button>Back to Home</button>
+            </a>
+
+            <a href="/plans">
+                <button>New Recharge</button>
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

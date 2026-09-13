@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Successful</title>
+</head>
+<body>
+
+    <h1>Payment Successful! 🎉</h1>
+
+    <h2>Recharge Summary</h2>
+
+    <table border="1">
+        <tr>
+            <th>Family Member</th>
+            <th>Mobile Number</th>
+            <th>Plan</th>
+            <th>Amount</th>
+        </tr>
+
+        {% for item in cart %}
+        <tr>
+            <td>{{ item["name"] }}</td>
+            <td>{{ item["mobile"] }}</td>
+            <td>{{ item["plan"] }}</td>
+            <td>₹{{ item["price"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Total Paid: ₹{{ total }}</h2>
+
+    <p>Payment Method: {{ payment_method }}</p>
+
+    <p>All selected family recharges are ready for processing.</p>
+
+    <br>
+
+    <a href="/">
+        <button>Back to Home</button>
+    </a>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recharge Plans</title>
+</head>
+<body>
+
+    <h1>Recharge Plans</h1>
+
+    <p>Select a recharge plan for your family member.</p>
+
+    <hr>
+
+    <h2>₹199 Plan</h2>
+    <p>Validity: 28 Days</p>
+    <p>Data: 1.5 GB/Day</p>
+
+    <form method="POST" action="/add-to-cart">
+        <input type="hidden" name="plan" value="₹199 Plan">
+        <input type="hidden" name="price" value="199">
+
+        <label>Select Family Member:</label>
+
+        <select name="member_id" required>
+            {% for member in members %}
+                <option value="{{ member[0] }}">
+                    {{ member[1] }} - {{ member[2] }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+
+        <button type="submit">Select Plan</button>
+    </form>
+
+    <hr>
+
+    <h2>₹299 Plan</h2>
+    <p>Validity: 28 Days</p>
+    <p>Data: 2 GB/Day</p>
+
+    <form method="POST" action="/add-to-cart">
+        <input type="hidden" name="plan" value="₹299 Plan">
+        <input type="hidden" name="price" value="299">
+
+        <label>Select Family Member:</label>
+
+        <select name="member_id" required>
+            {% for member in members %}
+                <option value="{{ member[0] }}">
+                    {{ member[1] }} - {{ member[2] }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+
+        <button type="submit">Select Plan</button>
+    </form>
+
+    <hr>
+
+    <h2>₹349 Plan</h2>
+    <p>Validity: 28 Days</p>
+    <p>Data: 2.5 GB/Day</p>
+
+    <form method="POST" action="/add-to-cart">
+        <input type="hidden" name="plan" value="₹349 Plan">
+        <input type="hidden" name="price" value="349">
+
+        <label>Select Family Member:</label>
+
+        <select name="member_id" required>
+            {% for member in members %}
+                <option value="{{ member[0] }}">
+                    {{ member[1] }} - {{ member[2] }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+
+        <button type="submit">Select Plan</button>
+    </form>
+
+    <hr>
+
+    <h2>₹399 Plan</h2>
+    <p>Validity: 28 Days</p>
+    <p>Data: 3 GB/Day</p>
+
+    <form method="POST" action="/add-to-cart">
+        <input type="hidden" name="plan" value="₹399 Plan">
+        <input type="hidden" name="price" value="399">
+
+        <label>Select Family Member:</label>
+
+        <select name="member_id" required>
+            {% for member in members %}
+                <option value="{{ member[0] }}">
+                    {{ member[1] }} - {{ member[2] }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+
+        <button type="submit">Select Plan</button>
+    </form>
+
+    <br>
+
+    <a href="/">
+        <button>Back to Home</button>
+    </a>
+
+</body>
+</html>

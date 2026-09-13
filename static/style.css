@@ -1,0 +1,447 @@
+/* =========================================
+   AI FAMILY RECHARGE SYSTEM
+   DARK NAVY + ELECTRIC BLUE THEME
+========================================= */
+
+
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        radial-gradient(circle at top left, #123b68 0%, transparent 35%),
+        radial-gradient(circle at bottom right, #082c52 0%, transparent 35%),
+        #06111f;
+
+    color: #eaf4ff;
+    min-height: 100vh;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.container {
+    width: 92%;
+    max-width: 1150px;
+    margin: 40px auto;
+}
+
+
+/* =========================================
+   HEADINGS
+========================================= */
+
+h1 {
+    color: #38bdf8;
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+h2 {
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+h3 {
+    color: #38bdf8;
+}
+
+p {
+    color: #b8c7d9;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   CARDS
+========================================= */
+
+.card {
+    background: rgba(10, 27, 46, 0.92);
+
+    padding: 28px;
+    margin: 20px 0;
+
+    border-radius: 16px;
+
+    border: 1px solid #173b5d;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.35),
+        0 0 18px rgba(56, 189, 248, 0.05);
+
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+
+    border-color: #249bd7;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.45),
+        0 0 25px rgba(56, 189, 248, 0.12);
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+button {
+    background: linear-gradient(
+        135deg,
+        #0284c7,
+        #38bdf8
+    );
+
+    color: #ffffff;
+
+    border: none;
+
+    padding: 12px 20px;
+
+    margin: 6px 4px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    transition: all 0.3s ease;
+
+    box-shadow:
+        0 4px 12px rgba(14, 165, 233, 0.2);
+}
+
+button:hover {
+    background: linear-gradient(
+        135deg,
+        #0369a1,
+        #0ea5e9
+    );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 20px rgba(14, 165, 233, 0.35);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   LINKS
+========================================= */
+
+a {
+    text-decoration: none;
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+input,
+select {
+    width: 100%;
+    max-width: 450px;
+
+    padding: 12px;
+
+    margin-top: 6px;
+
+    background: #0b1d31;
+
+    color: #ffffff;
+
+    border: 1px solid #285170;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: all 0.3s ease;
+}
+
+input::placeholder {
+    color: #7890a8;
+}
+
+input:focus,
+select:focus {
+    border-color: #38bdf8;
+
+    box-shadow:
+        0 0 0 3px rgba(56, 189, 248, 0.12);
+
+    background: #0d233a;
+}
+
+
+/* =========================================
+   SELECT DROPDOWN
+========================================= */
+
+select {
+    cursor: pointer;
+}
+
+select option {
+    background: #0b1d31;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   FORM LABELS
+========================================= */
+
+label {
+    color: #dcecff;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   TABLES
+========================================= */
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    background: #0a1b2e;
+
+    margin-top: 20px;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+th {
+    background: linear-gradient(
+        135deg,
+        #075985,
+        #0284c7
+    );
+
+    color: #ffffff;
+
+    padding: 14px;
+
+    text-align: left;
+
+    font-size: 15px;
+}
+
+td {
+    color: #d7e6f5;
+
+    padding: 13px;
+
+    border-bottom: 1px solid #18354f;
+}
+
+tr:hover {
+    background: #102943;
+}
+
+
+/* =========================================
+   TOTAL AMOUNT
+========================================= */
+
+.total {
+    font-size: 28px;
+
+    font-weight: bold;
+
+    color: #38bdf8;
+
+    margin-top: 20px;
+
+    text-shadow:
+        0 0 10px rgba(56, 189, 248, 0.2);
+}
+
+
+/* =========================================
+   SUCCESS MESSAGE
+========================================= */
+
+.success {
+    background: rgba(6, 78, 59, 0.45);
+
+    padding: 18px;
+
+    border-radius: 10px;
+
+    color: #6ee7b7;
+
+    font-weight: bold;
+
+    border: 1px solid #059669;
+
+    border-left: 5px solid #10b981;
+}
+
+
+/* =========================================
+   HORIZONTAL LINE
+========================================= */
+
+hr {
+    border: none;
+
+    border-top: 1px solid #1b3b58;
+
+    margin: 25px 0;
+}
+
+
+/* =========================================
+   DASHBOARD NUMBERS
+========================================= */
+
+.card h1 {
+    font-size: 38px;
+
+    color: #38bdf8;
+}
+
+
+/* =========================================
+   AI RECOMMENDATION HIGHLIGHT
+========================================= */
+
+.card h1:not(:first-child) {
+    text-shadow:
+        0 0 12px rgba(56, 189, 248, 0.25);
+}
+
+
+/* =========================================
+   RADIO BUTTONS
+========================================= */
+
+input[type="radio"] {
+    width: auto;
+
+    margin-right: 8px;
+
+    accent-color: #38bdf8;
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .container {
+        width: 94%;
+        margin: 20px auto;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    h2 {
+        font-size: 21px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    table {
+        display: block;
+
+        overflow-x: auto;
+
+        white-space: nowrap;
+    }
+
+    button {
+        width: 100%;
+
+        margin: 6px 0;
+    }
+
+    input,
+    select {
+        max-width: 100%;
+    }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 480px) {
+
+    .container {
+        width: 95%;
+    }
+
+    .card {
+        padding: 17px;
+
+        border-radius: 12px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 19px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+
+        padding: 11px;
+    }
+
+    .card h1 {
+        font-size: 32px;
+    }
+}

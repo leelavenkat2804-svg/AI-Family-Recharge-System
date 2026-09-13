@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Family Members</title>
+</head>
+<body>
+
+    <h1>My Family Members</h1>
+
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Mobile Number</th>
+        </tr>
+
+        {% for member in members %}
+        <tr>
+            <td>{{ member[0] }}</td>
+            <td>{{ member[1] }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>

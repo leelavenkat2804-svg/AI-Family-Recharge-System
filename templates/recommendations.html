@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Smart Recommendation</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>🤖 AI Smart Recharge Recommendation</h1>
+
+        <p>
+            Enter usage and budget. The ML model will recommend
+            a suitable recharge plan.
+        </p>
+
+    </div>
+
+
+    {% if saved_plan %}
+
+    <div class="card success">
+
+        ✅ Your selection has been saved successfully!
+
+        <br><br>
+
+        Selected Plan:
+        <strong>{{ saved_plan }}</strong>
+
+        <br><br>
+
+        This selection has been added to the ML training data.
+
+    </div>
+
+    {% endif %}
+
+
+    <div class="card">
+
+        <h2>📊 Enter Details</h2>
+
+        <form method="POST" action="/recommendation">
+
+            <label>Family Member:</label>
+
+            <br>
+
+            <select name="member_id" required>
+
+                <option value="">
+                    -- Select Family Member --
+                </option>
+
+                {% for member in members %}
+
+                <option value="{{ member[0] }}">
+                    {{ member[1] }} - {{ member[2] }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+            <br><br>
+
+
+            <label>Daily Data Usage (GB):</label>
+
+            <br>
+
+            <input
+                type="number"
+                name="usage"
+                step="0.1"
+                min="0"
+                placeholder="Example: 2"
+                required
+            >
+
+            <br><br>
+
+
+            <label>Budget (₹):</label>
+
+            <br>
+
+            <input
+                type="number"
+                name="budget"
+                min="0"
+                placeholder="Example: 300"
+                required
+            >
+
+            <br><br>
+
+            <button type="submit">
+                🤖 Get AI Recommendation
+            </button>
+
+        </form>
+
+    </div>
+
+
+    {% if recommended_plan %}
+
+    <div class="card">
+
+        <h2>💡 AI Recommendation</h2>
+
+        {% if selected_member %}
+
+        <p>
+            <strong>Family Member:</strong>
+            {{ selected_member[0] }}
+        </p>
+
+        <p>
+            <strong>Mobile:</strong>
+            {{ selected_member[1] }}
+        </p>
+
+        {% endif %}
+
+
+        <p>
+            <strong>Daily Usage:</strong>
+            {{ usage }} GB/day
+        </p>
+
+        <p>
+            <strong>Budget:</strong>
+            ₹{{ budget }}
+        </p>
+
+
+        {% if previous_plan %}
+
+        <p>
+            <strong>Previous Plan:</strong>
+            {{ previous_plan }}
+        </p>
+
+        {% else %}
+
+        <p>
+            <strong>Previous Plan:</strong>
+            No previous recharge history
+        </p>
+
+        {% endif %}
+
+
+        <hr>
+
+
+        <h2>🤖 Recommended Plan</h2>
+
+        <h1>{{ recommended_plan }}</h1>
+
+
+        <hr>
+
+
+        <h2>✅ Select Your Actual Plan</h2>
+
+        <p>
+            Choose the plan you would actually use.
+            This choice will be saved as ML training data.
+        </p>
+
+
+        <form method="POST" action="/recommendation">
+
+            <input
+                type="hidden"
+                name="member_id"
+                value="{{ request.form.get('member_id') }}"
+            >
+
+            <input
+                type="hidden"
+                name="usage"
+                value="{{ usage }}"
+            >
+
+            <input
+                type="hidden"
+                name="budget"
+                value="{{ budget }}"
+            >
+
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="actual_plan"
+                    value="₹199 Plan"
+                    required
+                >
+
+                ₹199 Plan
+
+            </label>
+
+            <br><br>
+
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="actual_plan"
+                    value="₹299 Plan"
+                >
+
+                ₹299 Plan
+
+            </label>
+
+            <br><br>
+
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="actual_plan"
+                    value="₹349 Plan"
+                >
+
+                ₹349 Plan
+
+            </label>
+
+            <br><br>
+
+
+            <label>
+
+                <input
+                    type="radio"
+                    name="actual_plan"
+                    value="₹399 Plan"
+                >
+
+                ₹399 Plan
+
+            </label>
+
+            <br><br>
+
+
+            <button type="submit">
+                💾 Save My Selection
+            </button>
+
+        </form>
+
+    </div>
+
+    {% endif %}
+
+
+    <br>
+
+    <a href="/">
+        <button>🏠 Back to Home</button>
+    </a>
+
+</div>
+
+</body>
+</html>

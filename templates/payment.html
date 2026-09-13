@@ -1,0 +1,185 @@
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Family Recharge Payment</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>💳 Family Recharge Payment</h1>
+
+        <p>
+            Review your family recharge details before continuing.
+        </p>
+
+    </div>
+
+
+    <!-- RECHARGE SUMMARY -->
+
+    <div class="card">
+
+        <h2>📱 Recharge Summary</h2>
+
+        <table>
+
+            <tr>
+                <th>Family Member</th>
+                <th>Mobile Number</th>
+                <th>Plan</th>
+                <th>Amount</th>
+            </tr>
+
+            {% for item in cart %}
+
+            <tr>
+
+                <td>{{ item["name"] }}</td>
+
+                <td>{{ item["mobile"] }}</td>
+
+                <td>{{ item["plan"] }}</td>
+
+                <td>₹{{ item["price"] }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+        <h2 class="total">
+            Total Amount: ₹{{ total }}
+        </h2>
+
+    </div>
+
+
+    <!-- PAYMENT METHOD -->
+
+    <div class="card">
+
+        <h2>💰 Select Payment Method</h2>
+
+        <p>
+            Choose a payment method to continue.
+        </p>
+
+
+        <!-- UPI -->
+
+        <div class="card">
+
+            <h3>📲 UPI Payment</h3>
+
+            <p>
+                Click below to open PhonePe for the payment.
+            </p>
+
+            <button
+                type="button"
+                onclick="openPhonePe()">
+                📲 Pay with PhonePe
+            </button>
+
+        </div>
+
+
+        <!-- DEMO PAYMENT -->
+
+        <div class="card">
+
+            <h3>🧪 Demo Payment</h3>
+
+            <p>
+                Use this option to complete the project's
+                simulated payment flow.
+            </p>
+
+            <form method="POST"
+                  action="/process-payment">
+
+                <input
+                    type="hidden"
+                    name="payment_method"
+                    value="UPI">
+
+                <button type="submit">
+                    ✅ Complete Demo UPI Payment
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <br>
+
+        <a href="/cart">
+            <button>
+                ← Back to Cart
+            </button>
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function openPhonePe() {
+
+    /*
+       PhonePe app deep link.
+
+       This attempts to open PhonePe on a device
+       where the PhonePe application is installed.
+    */
+
+    const phonePeUrl = "phonepe://";
+
+
+    /*
+       Try opening PhonePe.
+    */
+
+    window.location.href = phonePeUrl;
+
+
+    /*
+       If PhonePe does not open, show a message
+       and keep the demo payment available.
+    */
+
+    setTimeout(function () {
+
+        alert(
+            "PhonePe could not be opened. " +
+            "Make sure the PhonePe app is installed. " +
+            "You can use the Demo UPI Payment button " +
+            "to continue testing the project."
+        );
+
+    }, 1500);
+
+}
+
+</script>
+
+
+</body>
+
+</html>
+```

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI History Analysis</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>🤖 AI Recharge History Analysis</h1>
+
+            <p>
+                The system analyzes previous recharge history
+                to find each family member's most-used plan.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>📊 Most Used Plans</h2>
+
+            {% if most_used %}
+
+            <table>
+
+                <tr>
+                    <th>Family Member</th>
+                    <th>Most Used Plan</th>
+                </tr>
+
+                {% for member, plan in most_used.items() %}
+
+                <tr>
+                    <td>{{ member }}</td>
+                    <td>{{ plan }}</td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+            {% else %}
+
+            <p>
+                No recharge history available yet.
+            </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <a href="/">
+            <button>Back to Home</button>
+        </a>
+
+    </div>
+
+</body>
+</html>
